@@ -39,4 +39,8 @@ public class GreetingController {
     public List<Greeting> getAllGreetings() {
         return greetingService.getAllGreetings();
     }
+    @PostMapping("/save")
+    public Greeting saveGreeting(@RequestBody Greeting greeting) {
+        return greetingService.saveGreeting(greeting);
+    }
 }

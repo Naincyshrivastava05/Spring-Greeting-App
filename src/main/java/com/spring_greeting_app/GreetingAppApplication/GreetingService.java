@@ -32,4 +32,7 @@ public class GreetingService {
     public List<Greeting> getAllGreetings() {
         return greetingRepository.findAll();
     }
+    public Greeting saveGreeting(Greeting greeting) {
+        return greetingRepository.save(greeting);
+    }
 }
