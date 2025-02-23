@@ -4,6 +4,7 @@ package com.spring_greeting_app.GreetingAppApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/greeting")
@@ -34,4 +35,8 @@ public class GreetingController {
         return greetingService.findGreetingById(id);
     }
 
+    @GetMapping("/all")
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
+    }
 }
