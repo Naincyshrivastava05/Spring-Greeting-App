@@ -32,7 +32,18 @@ public class GreetingService {
     public List<Greeting> getAllGreetings() {
         return greetingRepository.findAll();
     }
-    public Greeting saveGreeting(Greeting greeting) {
-        return greetingRepository.save(greeting);
+    public Greeting updateGreeting(Long id, Greeting updatedGreeting) {
+        return greetingRepository.findById(id).map(greeting -> {
+            greeting.setMessage(updatedGreeting.getMessage());
+            return greetingRepository.save(greeting);
+        }).orElseThrow(() -> new RuntimeException("Greeting not found with id: " + id));
+    }
+    public String deleteGreeting(Long id) {
+        if (greetingRepository.existsById(id)) {
+            greetingRepository.deleteById(id);
+            return "Greeting with ID " + id + " has been deleted.";
+        } else {
+            return "Greeting not found with ID: " + id;
+        }
     }
 }
